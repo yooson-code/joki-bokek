@@ -6,6 +6,7 @@ export default function AdminPage() {
   const [files, setFiles] = useState<
     Array<{
       name: string;
+      displayName: string;
       size: number;
       uploadedAt: string;
       clientName: string;
