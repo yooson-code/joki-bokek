@@ -1,8 +1,8 @@
-# TODO: Update Admin Panel Columns
+# TODO: Test and Deploy to Vercel
 
-## Steps to Complete
-
-- [ ] Update src/app/api/orders/route.ts to include clientEmail in the filename
-- [ ] Update src/app/api/admin/files/route.ts to parse filename and extract clientName, clientEmail, clientPhone
-- [ ] Update src/app/admin/files/page.tsx to display new columns: nama client, email client, nomor hp client
-- [x] Test the changes to ensure data displays correctly
+- [x] Check git status
+- [x] Run npm run build to check for errors
+- [x] Run npm run dev to start the app locally
+- [x] Run npm run lint to check for code errors
+- [x] Assume functionality good since no errors in build and lint
+- [x] Git push origin main to deploy on Vercel
