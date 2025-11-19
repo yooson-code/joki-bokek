@@ -1,12 +1,18 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import fs from "fs";
-import path from "path";
 
 export default function AdminPage() {
   const [files, setFiles] = useState<
-    Array<{ name: string; size: number; uploadedAt: string }>
+    Array<{
+      name: string;
+      size: number;
+      uploadedAt: string;
+      clientName: string;
+      clientEmail: string;
+      clientPhone: string;
+      duration: string;
+    }>
   >([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -83,10 +89,19 @@ export default function AdminPage() {
                     Nama File
                   </th>
                   <th className="text-left py-3 px-4 font-medium text-gray-900">
-                    Ukuran
+                    Nama Client
                   </th>
                   <th className="text-left py-3 px-4 font-medium text-gray-900">
-                    Tanggal Upload
+                    Email Client
+                  </th>
+                  <th className="text-left py-3 px-4 font-medium text-gray-900">
+                    Nomor HP Client
+                  </th>
+                  <th className="text-left py-3 px-4 font-medium text-gray-900">
+                    Durasi
+                  </th>
+                  <th className="text-left py-3 px-4 font-medium text-gray-900">
+                    Tanggal
                   </th>
                   <th className="text-left py-3 px-4 font-medium text-gray-900">
                     Aksi
@@ -100,10 +115,21 @@ export default function AdminPage() {
                     className="border-b border-gray-200 hover:bg-gray-50"
                   >
                     <td className="py-4 px-4 font-light text-gray-600 break-all">
-                      {file.name}
+                      {file.displayName}
                     </td>
                     <td className="py-4 px-4 font-light text-gray-600">
-                      {formatFileSize(file.size)}
+                      {file.clientName}
+                    </td>
+                    <td className="py-4 px-4 font-light text-gray-600">
+                      {file.clientEmail}
+                    </td>
+                    <td className="py-4 px-4 font-light text-gray-600">
+                      {file.clientPhone}
+                    </td>
+                    <td className="py-4 px-4 font-light text-gray-600">
+                      {file.duration === "N/A"
+                        ? "N/A"
+                        : `${file.duration} hari`}
                     </td>
                     <td className="py-4 px-4 font-light text-gray-600">
                       {file.uploadedAt}

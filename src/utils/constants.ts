@@ -1,21 +1,31 @@
 import { PricingConfig, Duration } from "@/types";
 
-// Pricing Configuration
-// Tugas Harian: 10.000 - 80.000
-// Tugas Akhir: hingga 200.000
-export const PRICING: PricingConfig = {
-  basePrice: 10000, // Rp 10.000 - base untuk tugas harian
-  dailyTask: 10000, // Rp 10.000 - tugas harian minimal
-  semesterTask: 50000, // Rp 50.000 - tugas akhir minimal
-  durationMultipliers: {
-    1: 8.0, // 1 hari - 80rb (10k x 8)
-    2: 6.5, // 2 hari - 65rb
-    3: 5.0, // 3 hari - 50rb
-    4: 3.5, // 4 hari - 35rb
-    5: 2.5, // 5 hari - 25rb
-    6: 1.5, // 6 hari - 15rb
-    7: 1.0, // 7 hari - 10rb (minimal)
-  },
+// ============================================
+// HARGA TUGAS HARIAN (SMA/SMK semua jurusan & Kuliah TIF)
+// Ubah nilai di bawah untuk mengubah harga
+// ============================================
+export const DAILY_TASK_PRICING = {
+  price1Day: 80000, // 1 hari
+  price2Day: 65000, // 2 hari
+  price3Day: 50000, // 3 hari
+  price4Day: 40000, // 4 hari
+  price5Day: 30000, // 5 hari
+  price6Day: 20000, // 6 hari
+  price7Day: 15000, // 7 hari
+};
+
+// ============================================
+// HARGA TUGAS AKHIR / CAPSTONE / SKRIPSI
+// Ubah nilai di bawah untuk mengubah harga
+// ============================================
+export const SEMESTER_TASK_PRICING = {
+  price1Day: 150000, // 1 hari
+  price2Day: 140000, // 2 hari
+  price3Day: 120000, // 3 hari
+  price4Day: 80000, // 4 hari
+  price5Day: 60000, // 5 hari
+  price6Day: 40000, // 6 hari
+  price7Day: 30000, // 7 hari
 };
 
 export const TASK_TYPES = {

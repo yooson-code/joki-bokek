@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { generateInvoiceHTML } from '@/utils/invoice';
-import { OrderData } from '@/types';
+import { NextRequest, NextResponse } from "next/server";
+import { generateInvoiceHTML } from "@/utils/invoice";
+import { OrderData } from "@/types";
 
 export async function POST(request: NextRequest) {
   try {
@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
     // Validate required fields
     if (!order.email || !order.fullName) {
       return NextResponse.json(
-        { ok: false, error: 'Email dan nama tidak boleh kosong' },
+        { ok: false, error: "Email dan nama tidak boleh kosong" },
         { status: 400 }
       );
     }
@@ -21,13 +21,14 @@ export async function POST(request: NextRequest) {
     // Return HTML invoice that can be printed to PDF
     return new NextResponse(invoiceHTML, {
       headers: {
-        'Content-Type': 'text/html; charset=utf-8',
-        'Content-Disposition': `inline; filename="Invoice-Joki-Bokek-${Date.now()}.html"`,
+        "Content-Type": "text/html; charset=utf-8",
+        "Content-Disposition": `inline; filename="Invoice-Joki-Bokek-${Date.now()}.html"`,
       },
     });
   } catch (error) {
-    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-    console.error('Error generating invoice:', errorMessage);
+    const errorMessage =
+      error instanceof Error ? error.message : "Unknown error";
+    console.error("Error generating invoice:", errorMessage);
     return NextResponse.json(
       { ok: false, error: errorMessage },
       { status: 500 }

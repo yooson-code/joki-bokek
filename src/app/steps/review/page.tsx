@@ -229,7 +229,10 @@ export default function ReviewPage() {
               onClick={async () => {
                 try {
                   const formData = new FormData();
-                  formData.append("taskType", TASK_TYPES[order.taskType!].label);
+                  formData.append(
+                    "taskType",
+                    TASK_TYPES[order.taskType!].label
+                  );
                   formData.append("duration", String(order.duration));
                   formData.append("fullName", order.fullName);
                   formData.append("phoneNumber", order.phoneNumber);
@@ -252,7 +255,10 @@ export default function ReviewPage() {
                       address: order.address,
                       description: order.description,
                       attachmentFileName: order.attachmentFileName || "",
-                      totalPrice: calculatePrice(order.taskType!, order.duration!),
+                      totalPrice: calculatePrice(
+                        order.taskType!,
+                        order.duration!
+                      ),
                       paymentMethod: order.paymentMethod,
                       attachmentFile: null,
                       basePrice: 0,
@@ -265,7 +271,11 @@ export default function ReviewPage() {
 
                   if (response.ok) {
                     const html = await response.text();
-                    const newWindow = window.open("", "", "width=1000,height=800");
+                    const newWindow = window.open(
+                      "",
+                      "",
+                      "width=1000,height=800"
+                    );
                     if (newWindow) {
                       newWindow.document.write(html);
                       newWindow.document.close();

@@ -3,28 +3,33 @@
 ## Fitur Invoice yang Telah Ditambahkan
 
 ### 1. **Generate Invoice HTML Profesional**
+
 - File: `src/utils/invoice.ts`
 - Fungsi: `generateInvoiceHTML(order: OrderData): string`
 - Menghasilkan HTML invoice dengan format profesional yang siap cetak
 
 ### 2. **Kirim Invoice ke Email Customer**
+
 - Terintegrasi di: `src/app/api/orders/route.ts`
 - Invoice otomatis dikirim ke email customer dalam format HTML
 - Customer bisa menyimpan dan mencetak langsung dari email
 
 ### 3. **Preview Invoice di Browser**
+
 - Endpoint: `POST /api/invoice/generate`
 - Customer bisa preview invoice sebelum konfirmasi pesanan
 - Button "👁️ Preview Invoice" tersedia di review page
 - Bisa langsung print ke PDF menggunakan browser's print function
 
 ### 4. **Download Invoice API**
+
 - Endpoint: `POST /api/invoice/send`
 - Untuk custom integration di masa depan
 
 ## Format Invoice
 
 Invoice profesional mencakup:
+
 ```
 ┌─────────────────────────────────────────┐
 │  JOKI BOKEK                  INVOICE    │
@@ -88,6 +93,7 @@ Customer bisa:
 ## Fitur Preview Invoice
 
 Di halaman Review (Step 5), customer bisa klik button "👁️ Preview Invoice" untuk:
+
 - Melihat invoice sebelum konfirmasi
 - Print langsung ke PDF
 - Verifikasi data sebelum pembayaran
@@ -95,6 +101,7 @@ Di halaman Review (Step 5), customer bisa klik button "👁️ Preview Invoice" 
 ## Cara Print Invoice ke PDF
 
 ### Dari Email:
+
 1. Buka email dari Joki Bokek
 2. Download attachment `Invoice-Joki-Bokek-[timestamp].html`
 3. Buka file dengan browser
@@ -103,6 +110,7 @@ Di halaman Review (Step 5), customer bisa klik button "👁️ Preview Invoice" 
 6. Selesai!
 
 ### Dari Preview:
+
 1. Di halaman review, klik "👁️ Preview Invoice"
 2. Window baru terbuka dengan invoice
 3. Tekan Ctrl+P atau Cmd+P
@@ -132,11 +140,13 @@ interface OrderData {
 ## Email yang Dikirim
 
 ### 1. Email ke Customer
+
 - **Subject:** Invoice Pesanan Anda - Joki Bokek (Rp [amount])
 - **Body:** Instruksi pembayaran + langkah selanjutnya
 - **Attachment:** Invoice HTML profesional
 
 ### 2. Email ke Admin
+
 - **Subject:** 🎉 Pesanan Baru - [Customer Name] (Rp [amount])
 - **Body:** Detail lengkap pesanan dengan link WhatsApp
 
@@ -168,19 +178,25 @@ npm run dev
 ## Customization
 
 ### Mengubah Template Invoice
+
 File: `src/utils/invoice.ts`
+
 - Ubah `generateInvoiceHTML()` function
 - Edit styling di `<style>` tag
 - Tambah/hapus field sesuai kebutuhan
 
 ### Mengubah Email Body
+
 File: `src/app/api/orders/route.ts`
+
 - Ubah `customerEmailContent` variable
 - Sesuaikan instruksi pembayaran
 - Update contact info
 
 ### Mengubah Tanggal Jatuh Tempo
+
 File: `src/utils/invoice.ts` (baris ~10)
+
 ```typescript
 const dueDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // 7 hari
 ```
@@ -188,6 +204,7 @@ const dueDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // 7 hari
 ## API Endpoints
 
 ### 1. POST /api/orders
+
 - **Fungsi:** Terima order + kirim invoice
 - **Request:** FormData (dengan atau tanpa file)
 - **Response:** `{ success: true, notifications: {...} }`
@@ -197,12 +214,14 @@ const dueDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // 7 hari
   - Kirim invoice ke customer
 
 ### 2. POST /api/invoice/generate
+
 - **Fungsi:** Generate invoice HTML untuk preview
 - **Request:** JSON dengan order data
 - **Response:** HTML invoice
 - **Content-Type:** `text/html`
 
 ### 3. POST /api/invoice/send
+
 - **Fungsi:** Standalone endpoint untuk kirim invoice
 - **Request:** JSON dengan order data
 - **Response:** `{ ok: true }` atau `{ ok: false, error: string }`

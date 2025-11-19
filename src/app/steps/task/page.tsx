@@ -83,8 +83,12 @@ export default function TaskSelectionPage() {
         <Card className="bg-gray-50 border border-gray-200">
           <h4 className="font-medium text-gray-900 mb-3">Untuk Siapa?</h4>
           <ul className="text-sm text-gray-600 font-light space-y-2">
-            <li>✓ Siswa SMA/SMK <strong>semua jurusan</strong></li>
-            <li>✓ Mahasiswa Kuliah <strong>Teknik Informatika</strong></li>
+            <li>
+              ✓ Siswa SMA/SMK <strong>semua jurusan</strong>
+            </li>
+            <li>
+              ✓ Mahasiswa Kuliah <strong>Teknik Informatika</strong>
+            </li>
             <li>✓ Tugas: PR, soal, makalah, praktik, proyek, skripsi</li>
             <li>✓ Harga kompetitif dari Rp 10.000 - Rp 200.000</li>
           </ul>

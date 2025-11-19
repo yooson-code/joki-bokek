@@ -18,8 +18,20 @@ export async function GET(request: NextRequest) {
       const filePath = path.join(uploadsDir, fileName);
       const stats = fs.statSync(filePath);
 
+      // Parse filename to extract client info
+      // Format: timestamp_clientName_clientEmail_clientPhone_duration_originalFileName.pdf
+      const parts = fileName.replace(".pdf", "").split("_");
+      const clientName =
+        parts[1]?.replace(/~/g, " ").replace(/_/g, " ") || "N/A"; // Second part is client name
+      const clientEmail = parts[2] || "N/A"; // Third part is email
+      const clientPhone = parts[3] || "N/A"; // Fourth part is phone
+      const duration = parts.length >= 5 ? parts[4] : "N/A";
+
+      const displayName = `${parts[0]}_${parts[parts.length - 1]}`;
+
       return {
         name: fileName,
+        displayName,
         size: stats.size,
         uploadedAt: new Date(stats.mtime).toLocaleString("id-ID", {
           year: "numeric",
@@ -29,6 +41,10 @@ export async function GET(request: NextRequest) {
           minute: "2-digit",
           second: "2-digit",
         }),
+        clientName,
+        clientEmail,
+        clientPhone,
+        duration,
       };
     });
 

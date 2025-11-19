@@ -39,7 +39,10 @@ export default function HomePage() {
             </span>
           </h2>
           <p className="text-lg text-gray-600 font-light max-w-2xl mx-auto mb-12 leading-relaxed">
-            Tugas menumpuk? Deadline terdesak? Kami siap membantu siswa SMA/SMK semua jurusan & mahasiswa Teknik Informatika menyelesaikan tugas harian, proyek, skripsi, atau capstone dengan solusi berkualitas tinggi.
+            Tugas menumpuk? Deadline terdesak? Kami siap membantu siswa SMA/SMK
+            semua jurusan & mahasiswa Teknik Informatika menyelesaikan tugas
+            harian, proyek, skripsi, atau capstone dengan solusi berkualitas
+            tinggi.
           </p>
           <div className="flex gap-4 justify-center">
             <button
@@ -233,7 +236,9 @@ export default function HomePage() {
             <div>
               <h4 className="font-light text-lg mb-4">Joki Bokek</h4>
               <p className="text-sm text-gray-400 font-light leading-relaxed">
-                Platform bantuan tugas akademik untuk siswa SMA/SMK semua jurusan & mahasiswa Kuliah Teknik Informatika. Tim profesional berpengalaman siap membantu menyelesaikan tugas Anda.
+                Platform bantuan tugas akademik untuk siswa SMA/SMK semua
+                jurusan & mahasiswa Kuliah Teknik Informatika. Tim profesional
+                berpengalaman siap membantu menyelesaikan tugas Anda.
               </p>
             </div>
             <div>

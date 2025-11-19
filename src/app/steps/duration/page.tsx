@@ -73,10 +73,10 @@ export default function DurationPage() {
                   <div className="flex justify-between items-center">
                     <div>
                       <h3 className="font-medium text-gray-900">
-                        {getDurationLabel(duration as any)}
+                        {getDurationLabel(duration)}
                       </h3>
                       <p className="text-sm text-gray-600 font-light">
-                        {getPriceDescription(duration as any)}
+                        {getPriceDescription(order.taskType!, duration)}
                       </p>
                     </div>
                     <div className="text-right">
@@ -116,13 +116,13 @@ export default function DurationPage() {
           <h4 className="font-medium text-gray-900 mb-3">Sistem Harga Kami</h4>
           <ul className="text-sm text-gray-600 font-light space-y-2">
             <li>
-              • <strong>Tugas Harian:</strong> Rp 10.000 - Rp 80.000
+              • <strong>Tugas Harian:</strong> Rp 15.000 - 65.000
             </li>
             <li>
-              • <strong>1 hari:</strong> Rp 80.000 (ekspres)
+              • <strong>1 hari:</strong> Rp 65.000 (ekspres)
             </li>
             <li>
-              • <strong>7 hari:</strong> Rp 10.000 (hemat)
+              • <strong>7 hari:</strong> Rp 15.000 (hemat)
             </li>
             <li>
               • <strong>Tugas Akhir/Capstone:</strong> hingga Rp 200.000

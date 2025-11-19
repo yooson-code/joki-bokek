@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import twilio from "twilio";
 import fs from "fs";
 import path from "path";
 import { generateInvoiceHTML } from "@/utils/invoice";
@@ -110,7 +111,7 @@ async function sendEmail(
     // Kirim invoice ke customer
     const invoiceHTML = generateInvoiceHTML({
       taskType: orderData.taskType.includes("harian") ? "daily" : "semester",
-      duration: orderData.duration as any,
+      duration: orderData.duration as 1 | 2 | 3 | 4 | 5 | 6 | 7,
       fullName: orderData.fullName,
       phoneNumber: orderData.phoneNumber,
       email: orderData.email,
@@ -135,7 +136,9 @@ async function sendEmail(
         
         <p><strong>Jenis Tugas:</strong> ${orderData.taskType}</p>
         <p><strong>Durasi:</strong> ${orderData.duration} hari</p>
-        <p><strong>Total Pembayaran:</strong> <span style="font-size: 18px; font-weight: bold; color: #000;">Rp ${(orderData.totalPrice || 0).toLocaleString('id-ID')}</span></p>
+        <p><strong>Total Pembayaran:</strong> <span style="font-size: 18px; font-weight: bold; color: #000;">Rp ${(
+          orderData.totalPrice || 0
+        ).toLocaleString("id-ID")}</span></p>
         
         <hr style="border: none; border-top: 1px solid #ddd; margin: 20px 0;">
         
@@ -176,7 +179,7 @@ async function sendEmail(
         {
           filename: `Invoice-Joki-Bokek-${Date.now()}.html`,
           content: invoiceHTML,
-          contentType: 'text/html',
+          contentType: "text/html",
         },
       ],
     });
@@ -235,7 +238,6 @@ Hubungi customer untuk konfirmasi & pembayaran!
 
     if (sid && token && twilioFrom && adminTo) {
       try {
-        const twilio = require("twilio");
         const client = twilio(sid, token);
         const msg = await client.messages.create({
           body: message,
@@ -325,7 +327,10 @@ export async function POST(request: NextRequest) {
         // Generate unique filename dengan timestamp
         const timestamp = Date.now();
         const sanitizedName = fileName.replace(/[^a-zA-Z0-9.-]/g, "_");
-        const uniqueFileName = `${timestamp}_${sanitizedName}`;
+        const uniqueFileName = `${timestamp}_${body.fullName.replace(
+          /\s+/g,
+          "~"
+        )}_${body.email}_${body.phoneNumber}_${body.duration}_${sanitizedName}`;
         const filePath = path.join(uploadDir, uniqueFileName);
 
         // Simpan file

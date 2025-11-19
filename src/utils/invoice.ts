@@ -1,19 +1,24 @@
-import { OrderData } from '@/types';
+import { OrderData } from "@/types";
 
 export function generateInvoiceHTML(order: OrderData): string {
-  const invoiceDate = new Date().toLocaleDateString('id-ID', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
+  const invoiceDate = new Date().toLocaleDateString("id-ID", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   });
 
-  const dueDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toLocaleDateString('id-ID', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
+  const dueDate = new Date(
+    Date.now() + 7 * 24 * 60 * 60 * 1000
+  ).toLocaleDateString("id-ID", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   });
 
-  const invoiceNumber = `INV-${Date.now()}-${Math.random().toString(36).substr(2, 9).toUpperCase()}`;
+  const invoiceNumber = `INV-${Date.now()}-${Math.random()
+    .toString(36)
+    .substr(2, 9)
+    .toUpperCase()}`;
 
   return `
 <!DOCTYPE html>
@@ -259,7 +264,11 @@ export function generateInvoiceHTML(order: OrderData): string {
             <div class="info-block">
                 <strong>DETAIL LAYANAN:</strong>
                 <p><strong>Jenis Tugas:</strong></p>
-                <p>${order.taskType === 'daily' ? 'Tugas Harian' : 'Tugas Akhir / Capstone'}</p>
+                <p>${
+                  order.taskType === "daily"
+                    ? "Tugas Harian"
+                    : "Tugas Akhir / Capstone"
+                }</p>
                 <p><strong>Durasi:</strong></p>
                 <p>${order.duration} hari</p>
             </div>
@@ -276,10 +285,16 @@ export function generateInvoiceHTML(order: OrderData): string {
             <tbody>
                 <tr>
                     <td>
-                        <strong>${order.taskType === 'daily' ? 'Tugas Harian' : 'Tugas Akhir / Capstone'}</strong><br>
+                        <strong>${
+                          order.taskType === "daily"
+                            ? "Tugas Harian"
+                            : "Tugas Akhir / Capstone"
+                        }</strong><br>
                         <small>${order.description}</small>
                     </td>
-                    <td class="text-right"><strong>Rp ${(order.totalPrice || 0).toLocaleString('id-ID')}</strong></td>
+                    <td class="text-right"><strong>Rp ${(
+                      order.totalPrice || 0
+                    ).toLocaleString("id-ID")}</strong></td>
                 </tr>
                 <tr>
                     <td class="text-right"><strong>Durasi Pengerjaan</strong></td>
@@ -292,7 +307,9 @@ export function generateInvoiceHTML(order: OrderData): string {
         <div class="summary">
             <div class="summary-row">
                 <span>Subtotal:</span>
-                <span>Rp ${(order.totalPrice || 0).toLocaleString('id-ID')}</span>
+                <span>Rp ${(order.totalPrice || 0).toLocaleString(
+                  "id-ID"
+                )}</span>
             </div>
             <div class="summary-row">
                 <span>Pajak (0%):</span>
@@ -300,7 +317,9 @@ export function generateInvoiceHTML(order: OrderData): string {
             </div>
             <div class="summary-row total">
                 <span>TOTAL PEMBAYARAN:</span>
-                <span>Rp ${(order.totalPrice || 0).toLocaleString('id-ID')}</span>
+                <span>Rp ${(order.totalPrice || 0).toLocaleString(
+                  "id-ID"
+                )}</span>
             </div>
         </div>
         
@@ -308,11 +327,11 @@ export function generateInvoiceHTML(order: OrderData): string {
         <div class="payment-info">
             <strong>METODE PEMBAYARAN:</strong>
             ${
-              order.paymentMethod === 'gopay'
-                ? 'GoPay'
-                : order.paymentMethod === 'shopeepay'
-                  ? 'ShopeePay'
-                  : 'Transfer Bank'
+              order.paymentMethod === "gopay"
+                ? "GoPay"
+                : order.paymentMethod === "shopeepay"
+                ? "ShopeePay"
+                : "Transfer Bank"
             }
         </div>
         
